@@ -1,0 +1,10 @@
+using UnityEngine;
+
+namespace DefaultNamespace
+{
+    public interface IFactory
+    {
+        public T Create<T>(T t) where T : MonoBehaviour;
+        public T Create<T>(T t, Transform transform) where T : MonoBehaviour;
+    }
+}
