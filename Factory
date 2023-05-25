@@ -1,0 +1,43 @@
+using System;
+using System.Collections.Generic;
+using Unity.VisualScripting;
+using UnityEngine;
+
+namespace DefaultNamespace
+{
+    public class Factory : IFactory
+    {
+        private List<MonoBehaviour> prefabs = new List<MonoBehaviour>();
+        public static Factory Instance { get; set; } = new Factory();
+
+        public Factory()
+        {
+            MonoBehaviour[] allPrefabs = Resources.LoadAll<MonoBehaviour>(string.Empty);
+            foreach (MonoBehaviour obj in allPrefabs)
+            {
+                if (obj == null)
+                    continue;
+                if (!prefabs.Contains(obj))
+                    prefabs.Add(obj);
+            }
+        }
+
+        public T Create<T>(T t) where T : MonoBehaviour
+        {
+            Type type = typeof(T);
+            MonoBehaviour res = prefabs.Find(x => x.GetType() == type);
+            if (res != null)  return  (T) UnityEngine.Object.Instantiate(res);
+            return null;
+        }
+
+        public  T Create<T>(T t,Transform transform) where T : MonoBehaviour
+        {
+            Type type = typeof(T);
+            MonoBehaviour res = prefabs.Find(x => x.GetType() == type);
+            if (res != null)  return  (T) UnityEngine.Object.Instantiate(res, transform);
+            return null;
+        }
+
+
+    }
+}
