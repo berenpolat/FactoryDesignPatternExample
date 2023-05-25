@@ -1,0 +1,36 @@
+using System;
+using Unity.VisualScripting;
+using UnityEngine;
+
+namespace DefaultNamespace
+{
+    public class GameManager: MonoBehaviour
+    {
+
+
+        public GameObject playPanel;
+        public GameObject choosePanel;
+
+        public EasyGameObjectFactory easyGameObjectFactory;
+
+        private static GameManager Instance { get; set; } 
+
+        void Start()
+        {
+            if (Instance == null)
+                Instance = this;
+            else
+                Destroy(this);
+            
+            playPanel.SetActive(true);
+            Instantiate(this,this.transform);
+            choosePanel.SetActive(false);
+            EasyGameObjectFactory g = Factory.Instance.Create<EasyGameObjectFactory>
+                (new EasyGameObjectFactory(), gameObject.transform);
+            HardGameObjectFactory k = Factory.Instance.Create(new HardGameObjectFactory());
+            g.transform.localScale = Vector3.one *10f ;
+            k.transform.localScale = Vector3.zero;
+        }
+        
+    }
+}
