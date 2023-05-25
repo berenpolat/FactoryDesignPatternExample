@@ -1,0 +1,15 @@
+using System;
+using UnityEngine;
+
+namespace DefaultNamespace
+{
+    public class EasyGameObjectFactory: MonoBehaviour
+    {
+        private void Awake()
+        {
+            Debug.Log("Fabrikadan çıktım içerisi fena");
+        }
+    }
+}
+
+//We are creating a gameObject called EasyGameFactory
