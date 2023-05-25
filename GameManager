@@ -34,3 +34,4 @@ namespace DefaultNamespace
         
     }
 }
+//Create a resources file and add your prefab in it. Its gonna check if T type is in this file.
