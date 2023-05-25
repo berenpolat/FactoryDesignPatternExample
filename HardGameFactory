@@ -1,0 +1,9 @@
+using UnityEngine;
+
+namespace DefaultNamespace
+{
+    public class HardGameObjectFactory: MonoBehaviour
+    {
+      // I have created this class to make a gameobject example . You can full here if youd like to.
+    }
+}
